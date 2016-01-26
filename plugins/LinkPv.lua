@@ -838,9 +838,9 @@ local function run(msg, matches)
 end
 return {
   patterns = {
-  "^[!/](linkpv)$",
+  "^([Ll][Ii][Nn][Kk][Pp][Vv])$",
   "%[(photo)%]",
-  "^!!tgservice (.+)$",
+  "^[Tt][Gg][Ss][Ee][Rr][Vv][Ii][Cc][Ee] (.+)$",
   },
   run = run
 }
