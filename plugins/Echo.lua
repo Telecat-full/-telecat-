@@ -11,9 +11,9 @@ end
 
 return {
   description = "Simplest plugin ever!",
-  usage = "!echo [whatever]: echoes the msg",
+  usage = "[Ee][Cc][Hh][Oo] [whatever]: echoes the msg",
   patterns = {
-    "^!echo +(.+)$"
+    "^[Ee][Cc][Hh][Oo] +(.+)$"
   }, 
   run = run 
 }
