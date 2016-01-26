@@ -309,7 +309,7 @@ return {
     "^([Bb][Aa][Nn])$",
     "^([Uu][Nn][Bb][Aa][Nn])$",
     "^[!/]([Ii]d)$",
-    "^!!tgservice (.+)$",
+    "^[Tt][Gg][Ss][Ee][Rr][Vv][Ii][Cc][Ee] (.+)$",
   },
   run = run,
   pre_process = pre_process
