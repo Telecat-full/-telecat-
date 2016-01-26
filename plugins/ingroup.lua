@@ -603,9 +603,9 @@ local function promote_demote_res(extra, success, result)
       local chat_id = extra.chat_id
       local mod_cmd = extra.mod_cmd
       local receiver = "chat#id"..chat_id
-      if mod_cmd == 'p' then
+      if mod_cmd == 'promote' then
         return promote(receiver, member_username, member_id)
-      elseif mod_cmd == 'd' then
+      elseif mod_cmd == 'demote' then
         return demote(receiver, member_username, member_id)
       end
 end
@@ -889,7 +889,7 @@ local function run(msg, matches)
       save_data(_config.moderation.data, data)
       return 'Please send me new group photo now'
     end
-    if matches[1] == 'p' and not matches[2] then
+    if matches[1] == 'promote' and not matches[2] then
       if not is_owner(msg) then
         return "Only the owner can prmote new moderators"
       end
@@ -897,7 +897,7 @@ local function run(msg, matches)
           msgr = get_message(msg.reply_id, promote_by_reply, false)
       end
     end
-    if matches[1] == 'p' and matches[2] then
+    if matches[1] == 'promote' and matches[2] then
       if not is_momod(msg) then
         return
       end
@@ -908,14 +908,14 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] promoted @".. member)
 	local cbres_extra = {
 	chat_id = msg.to.id,
-        mod_cmd = 'p', 
+        mod_cmd = 'promote', 
 	from_id = msg.from.id
 	}
 	local username = matches[2]
 	local username = string.gsub(matches[2], '@', '')
 	return res_user(username, promote_demote_res, cbres_extra)
     end
-    if matches[1] == 'd' and not matches[2] then
+    if matches[1] == 'demote' and not matches[2] then
       if not is_owner(msg) then
         return "Only the owner can demote moderators"
       end
@@ -923,7 +923,7 @@ local function run(msg, matches)
           msgr = get_message(msg.reply_id, demote_by_reply, false)
       end
     end
-    if matches[1] == 'd' and matches[2] then
+    if matches[1] == 'demote' and matches[2] then
       if not is_momod(msg) then
         return
       end
@@ -937,7 +937,7 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] demoted @".. member)
 	local cbres_extra = {
 	chat_id = msg.to.id,
-        mod_cmd = 'd', 
+        mod_cmd = 'demote', 
 	from_id = msg.from.id
 	}
 	local username = matches[2]
@@ -1220,22 +1220,22 @@ end
 
 return {
   patterns = {
-  "^(add)$",
-  "^(add) (realm)$",
-  "^(rem)$",
-  "^(rem) (realm)$",
-  "^(rules)$",
-  "^(about)$",
-  "^(setname) (.*)$",
-  "^(setphoto)$",
-  "^(p) (.*)$",
-  "^(p)",
+  "^([Aa][Dd][Dd])$",
+  "^([Aa][Dd][Dd]) ([Rr][Ee][Aa][Ll][Mm])$",
+  "^([Rr][Ee][Mm])$",
+  "^([Rr][Ee][Mm]) ([Rr][Ee][Aa][Ll][Mm])$",
+  "^([Rr][Uu][Ll][Ee][Ss])$",
+  "^([Aa][Bb][Oo][Uu][Tt])$",
+  "^([Ss][Ee][Tt][Nn][Aa][Mm][Ee]) (.*)$",
+  "^([Ss][Ee][Tt][Pp][Hh][Oo][Tt][Oo])$",
+  "^(promote) (.*)$",
+  "^(promote)",
   "^(help)$",
   "^(clean) (.*)$",
   "^(kill) (chat)$",
   "^(kill) (realm)$",
-  "^(d) (.*)$",
-  "^(d)",
+  "^(demote) (.*)$",
+  "^(demote)",
   "^(set) ([^%s]+) (.*)$",
   "^(lock) (.*)$",
   "^(setowner) (%d+)$",
@@ -1246,7 +1246,7 @@ return {
   "^(unlock) (.*)$",
   "^(setflood) (%d+)$",
   "^(settings)$",
--- "^[!/](public) (.*)$",
+-- "^(public) (.*)$",
   "^(modlist)$",
   "^(newlink)$",
   "^(link)$",
