@@ -21,7 +21,7 @@ local fuses = '!printf user#id' .. msg.from.id
 
                  local sends0 = send_msg('chat#70690378', fuse, ok_cb, false)
 
- return 'your feedback succesfully recived to @creed_is_dead and Team😜!'
+ return 'sent!'
 
      
 
@@ -31,9 +31,9 @@ end
 return {
   description = "Feedback",
 
-  usage = "!feedback : send maseage to admins with bot",
+  usage = "[Ff][Ee][Ee][Dd][Bb][Aa][Cc][Kk] : send maseage to admins with bot",
   patterns = {
-    "^![Ff]eedback (.*)$"
+    "^[Ff][Ee][Ee][Dd][Bb][Aa][Cc][Kk] (.*)$"
 
   },
   run = run
