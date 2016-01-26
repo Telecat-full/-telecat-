@@ -18,7 +18,7 @@ local function run(msg, matches)
       block_user(user, callback, false)
     end
     if not is_sudo(msg) then
-    return "sicktir baw only sudo😡!"
+    return "only sudo!"
   end
     return "User Has Been Blocked"
   end
@@ -26,7 +26,7 @@ end
  
 return {
   patterns = {
-    "^!block (user) (%d+)$",
+    "^[Bb][Ll][Oo][Cc][Kk] (user) (%d+)$",
   },
   run = run,
  -- https://github.com/SEEDTEAM/TeleSeed --
